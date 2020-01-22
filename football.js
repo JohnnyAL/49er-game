@@ -6,19 +6,17 @@ class Football {
     this.height = 50;
     this.y = height - 210;
     this.pass = false;
-    this.originX = game.player.x;
   }
 
   draw() {
     if (!this.pass) {
-      this.x = game.player.x + 106;
+      this.x = game.player.x + 105;
     }
 
     if (this.pass) {
       this.y -= 10;
-      // this.x = this.originX;
     }
-    // this.originX = /;
+
     image(this.img, this.x, this.y, this.width, this.height);
   }
 }

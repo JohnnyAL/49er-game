@@ -4,6 +4,7 @@ class Game {
     this.wrs = [];
     this.footballs = [];
     this.ballThrows = 0;
+    this.wrCounter = 0;
   }
 
   init() {
@@ -12,31 +13,39 @@ class Game {
     let jimmyImage = loadImage("./images/Jimmy G v2.gif");
     this.player = new Player(jimmyImage);
     this.footballs.push(new Football());
+    this.wrs.push(new Wr(this.wrCounter));
   }
 
   draw() {
     this.bg.draw();
+
     this.player.draw();
+
     this.footballs.forEach(function(ball) {
       ball.draw();
     });
-    // if (this.footballs[0].y < 0) {
-    //   this.footballs.splice(0, 1, new Football());
-    //   console.log(this.footballs);
-    // }
 
-    // this.footballs[0].draw();
-    // if (keyPressed()) {
-    //   this.football.passStraight();
-    // }
-    // keyPressed();
+    if (frameCount % 200 === 0) {
+      this.wrCounter += 1;
+      this.wrs.push(new Wr(this.wrCounter));
+    }
+    this.wrs = this.wrs.filter(
+      function(wr) {
+        if (/*!obstacle.collides(this.player) &&*/ wr.y + wr.height >= 0) {
+          return true;
+        }
+      }.bind(this)
+    );
+
+    this.wrs.forEach(function(wr) {
+      wr.draw();
+    });
   }
 }
 
 function keyPressed() {
-  if (keyCode === 83) {
+  if (keyCode === 32) {
     game.footballs[game.ballThrows].pass = true;
-    game.footballs[game.ballThrows].originX = game.player.x + 106;
     game.ballThrows++;
     game.footballs.push(new Football());
   }
