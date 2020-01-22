@@ -18,13 +18,13 @@ class Player {
 
   moveLeft() {
     if (this.x >= 0) {
-      this.x -= 5;
+      this.x -= 10;
     }
   }
 
   moveRight() {
     if (this.x <= width - this.width) {
-      this.x += 5;
+      this.x += 10;
     }
   }
 }

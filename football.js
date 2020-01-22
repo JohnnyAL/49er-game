@@ -1,6 +1,6 @@
 class Football {
   constructor() {
-    let footballImage = loadImage("./images/Football still.png");
+    let footballImage = loadImage("./images/Football-still.png");
     this.img = footballImage;
     this.width = 50;
     this.height = 50;
@@ -14,7 +14,7 @@ class Football {
     }
 
     if (this.pass) {
-      this.y -= 10;
+      this.y -= 20;
     }
 
     image(this.img, this.x, this.y, this.width, this.height);
