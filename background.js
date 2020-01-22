@@ -5,7 +5,7 @@ class Background {
     this.img = img;
   }
 
-  roll() {
+  draw() {
     image(this.img, 0, yPosition, 1500, 1250);
     image(this.img, 0, yPosition - height, 1500, 1250);
 
@@ -14,9 +14,5 @@ class Background {
     if (yPosition >= height) {
       yPosition = 0;
     }
-  }
-
-  draw() {
-    this.roll();
   }
 }
