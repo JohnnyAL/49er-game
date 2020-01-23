@@ -23,7 +23,7 @@ class Defense {
       return false;
     }
 
-    if (this.y + 120 < obj.y || obj.y + 20 < this.y) {
+    if (this.y + 120 < obj.y || obj.y + obj.height < this.y) {
       return false;
     }
     return true;

@@ -73,19 +73,35 @@ class Game {
     this.wrs.forEach(wr => {
       this.footballs = this.footballs.filter(
         function(football, index) {
-          if (!football.collides(wr)) {
+          if (!football.collides(wr) || wr.y > this.player.y - 75) {
             // NO COLLISION
             return true;
           }
+          //COLLISION
           this.score += 7;
-          // console.log("COLLISION");
           this.ballThrows--;
         }.bind(this)
       );
     });
 
-    textSize(30);
+    // this.defense.forEach(defender => {
+    //   this.footballs = this.footballs.filter(
+    //     function(football, index) {
+    //       if (football.collides(defender)) {
+    //         // NO COLLISION
+    //         return true;
+    //       }
+    //       //COLLISION
+    //       noLoop();
+    //       text("Game Over", 325, 250);
+    //       text("Press ENTER to start again", 250, 300);
+    //     }.bind(this)
+    //   );
+    // });
+
     text("SCORE: " + this.score, 50, 50);
+    textSize(30);
+    textStyle(BOLD);
   }
 }
 
@@ -96,11 +112,6 @@ function keyPressed() {
     }
     game.footballs.push(new Football());
     game.ballThrows++;
-    // game.footballs = game.footballs.filter(function() {
-    //   if (!game.footballs[game.ballThrows].collides(game.wrs[0])) {
-    //     return true;
-    //   }
-    // });
   }
   if (keyCode === 13) {
     // game.start = true;
