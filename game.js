@@ -35,7 +35,7 @@ class Game {
 
     this.wrs = this.wrs.filter(
       function(wr) {
-        if (/*!obstacle.collides(this.player) &&*/ wr.y + wr.height >= 0) {
+        if (wr.y + wr.height >= 0) {
           return true;
         }
       }.bind(this)
@@ -53,10 +53,7 @@ class Game {
 
     this.defense = this.defense.filter(
       function(defender) {
-        if (
-          /*!obstacle.collides(this.player) &&*/ defender.y + defender.height >=
-          0
-        ) {
+        if (!defender.collides(this.player) && defender.y <= height) {
           return true;
         }
       }.bind(this)
@@ -65,6 +62,14 @@ class Game {
     this.defense.forEach(function(defender) {
       defender.draw();
     });
+
+    this.footballs = this.footballs.filter(
+      function(football) {
+        if (!football.collides(this.wrs[0])) {
+          return true;
+        }
+      }.bind(this)
+    );
   }
 }
 
@@ -73,5 +78,10 @@ function keyPressed() {
     game.footballs[game.ballThrows].pass = true;
     game.ballThrows++;
     game.footballs.push(new Football());
+    // game.footballs = game.footballs.filter(function() {
+    //   if (!game.footballs[game.ballThrows].collides(game.wrs[0])) {
+    //     return true;
+    //   }
+    // });
   }
 }

@@ -6,10 +6,10 @@ class Background {
   }
 
   draw() {
-    image(this.img, 0, yPosition, 1500, 1250);
-    image(this.img, 0, yPosition - height, 1500, 1250);
+    image(this.img, 0, yPosition, 800, 600);
+    image(this.img, 0, yPosition - height, 800, 600);
 
-    yPosition += 2;
+    yPosition += 1;
 
     if (yPosition >= height) {
       yPosition = 0;

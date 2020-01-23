@@ -2,21 +2,32 @@ class Football {
   constructor() {
     let footballImage = loadImage("./images/Football-still.png");
     this.img = footballImage;
-    this.width = 50;
-    this.height = 50;
-    this.y = height - 210;
+    this.width = 25;
+    this.height = 25;
+    this.y = height - 125;
     this.pass = false;
   }
 
   draw() {
     if (!this.pass) {
-      this.x = game.player.x + 105;
+      this.x = game.player.x + 42;
     }
 
     if (this.pass) {
-      this.y -= 20;
+      this.y -= 10;
     }
 
     image(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  collides(obj) {
+    if (this.x + this.width < obj.x || obj.x + obj.width < this.x) {
+      return false;
+    }
+
+    if (this.y + this.height < obj.y || obj.y + obj.height < this.y) {
+      return false;
+    }
+    return true;
   }
 }

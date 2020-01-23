@@ -1,5 +1,5 @@
-let width = 1500;
-let height = 1250;
+let width = 800;
+let height = 600;
 const game = new Game();
 
 function preload() {
