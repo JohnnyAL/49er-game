@@ -6,6 +6,8 @@ class Game {
     this.wrCounter = 0;
     this.defense = [];
     this.defCounter = 0;
+    this.score = 0;
+    this.start = false;
   }
 
   init() {
@@ -31,6 +33,7 @@ class Game {
     if (frameCount % 200 === 0) {
       this.wrCounter += 1;
       this.wrs.push(new Wr(this.wrCounter));
+      // console.log(this.wrs);
     }
 
     this.wrs = this.wrs.filter(
@@ -55,6 +58,10 @@ class Game {
       function(defender) {
         if (!defender.collides(this.player) && defender.y <= height) {
           return true;
+        } else if (defender.collides(this.player)) {
+          noLoop();
+          text("Game Over", 325, 250);
+          text("Press ENTER to start again", 250, 300);
         }
       }.bind(this)
     );
@@ -63,25 +70,40 @@ class Game {
       defender.draw();
     });
 
-    this.footballs = this.footballs.filter(
-      function(football) {
-        if (!football.collides(this.wrs[0])) {
-          return true;
-        }
-      }.bind(this)
-    );
+    this.wrs.forEach(wr => {
+      this.footballs = this.footballs.filter(
+        function(football, index) {
+          if (!football.collides(wr)) {
+            // NO COLLISION
+            return true;
+          }
+          this.score += 7;
+          // console.log("COLLISION");
+          this.ballThrows--;
+        }.bind(this)
+      );
+    });
+
+    textSize(30);
+    text("SCORE: " + this.score, 50, 50);
   }
 }
 
 function keyPressed() {
   if (keyCode === 32) {
-    game.footballs[game.ballThrows].pass = true;
-    game.ballThrows++;
+    if (game.ballThrows < game.footballs.length && game.ballThrows >= 0) {
+      game.footballs[game.ballThrows].pass = true;
+    }
     game.footballs.push(new Football());
+    game.ballThrows++;
     // game.footballs = game.footballs.filter(function() {
     //   if (!game.footballs[game.ballThrows].collides(game.wrs[0])) {
     //     return true;
     //   }
     // });
+  }
+  if (keyCode === 13) {
+    // game.start = true;
+    document.location.reload();
   }
 }

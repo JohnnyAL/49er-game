@@ -19,11 +19,11 @@ class Defense {
   }
 
   collides(obj) {
-    if (this.x + this.width < obj.x || obj.x + obj.width < this.x) {
+    if (this.x + 75 < obj.x || obj.x + 35 < this.x) {
       return false;
     }
 
-    if (this.y + this.height < obj.y || obj.y + obj.height < this.y) {
+    if (this.y + 120 < obj.y || obj.y + 20 < this.y) {
       return false;
     }
     return true;
