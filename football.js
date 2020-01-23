@@ -2,8 +2,8 @@ class Football {
   constructor() {
     let footballImage = loadImage("./images/Football-still.png");
     this.img = footballImage;
-    this.width = 28;
-    this.height = 28;
+    this.width = 27;
+    this.height = 27;
     this.y = height - 125;
     this.pass = false;
   }

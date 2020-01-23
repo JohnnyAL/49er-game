@@ -7,7 +7,8 @@ class Game {
     this.defense = [];
     this.defCounter = 0;
     this.score = 0;
-    this.start = false;
+    this.timeCounter = 1;
+    // this.start = false;
   }
 
   init() {
@@ -49,9 +50,13 @@ class Game {
     });
 
     //defender draw
-    if (frameCount % 50 === 0) {
+    if (frameCount % (50 - this.timeCounter) === 0) {
       this.defCounter += 1;
       this.defense.push(new Defense(this.defCounter));
+    }
+
+    if (frameCount % 120 === 0) {
+      this.timeCounter += 1;
     }
 
     this.defense = this.defense.filter(
@@ -60,8 +65,8 @@ class Game {
           return true;
         } else if (defender.collides(this.player)) {
           noLoop();
-          text("Game Over", 325, 250);
-          text("Press ENTER to start again", 250, 300);
+          text("GAME OVER!", 275, 250);
+          text("Press ENTER to play again", 150, 300);
         }
       }.bind(this)
     );
@@ -84,6 +89,7 @@ class Game {
       );
     });
 
+    // ------interceptions------
     // this.defense.forEach(defender => {
     //   this.footballs = this.footballs.filter(
     //     function(football, index) {
@@ -99,8 +105,9 @@ class Game {
     //   );
     // });
 
-    text("SCORE: " + this.score, 50, 50);
-    textSize(30);
+    text("Score: " + this.score, 40, 50);
+    textStyle();
+    textSize(40);
     textStyle(BOLD);
   }
 }

@@ -14,16 +14,16 @@ class Defense {
   }
 
   draw() {
-    this.y += 4;
+    this.y += 5;
     image(this.img, this.x, this.y, this.width, this.height);
   }
 
   collides(obj) {
-    if (this.x + 75 < obj.x || obj.x + 35 < this.x) {
+    if (this.x + 85 < obj.x || obj.x + 35 < this.x) {
       return false;
     }
 
-    if (this.y + 120 < obj.y || obj.y + obj.height < this.y) {
+    if (this.y + 120 < obj.y || obj.y + 30 < this.y) {
       return false;
     }
     return true;
