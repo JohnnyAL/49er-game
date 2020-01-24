@@ -2,9 +2,9 @@ class Defense {
   constructor(counter) {
     this.counter = counter;
     this.allImages = [
-      loadImage("./images/Clowney-still.png"),
-      loadImage("./images/Aaron-Donald-still.png"),
-      loadImage("./images/Frank-Clark-still.png")
+      loadImage("images/Clowney-still.png"),
+      loadImage("images/Aaron-Donald-still.png"),
+      loadImage("images/Frank-Clark-still.png")
     ];
     this.img = this.allImages[this.counter % this.allImages.length];
     this.width = 130;
@@ -19,11 +19,11 @@ class Defense {
   }
 
   collides(obj) {
-    if (this.x + 85 < obj.x || obj.x + 35 < this.x) {
+    if (this.x + 80 < obj.x || obj.x + 35 < this.x) {
       return false;
     }
 
-    if (this.y + 120 < obj.y || obj.y + 30 < this.y) {
+    if (this.y + 115 < obj.y || obj.y + 20 < this.y) {
       return false;
     }
     return true;

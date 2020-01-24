@@ -2,8 +2,8 @@ class Wr {
   constructor(counter) {
     this.counter = counter;
     this.allImages = [
-      loadImage("./images/Deebo-Samuel-still.png"),
-      loadImage("./images/George-Kittle-still.png")
+      loadImage("images/Deebo-Samuel-still.png"),
+      loadImage("images/George-Kittle-still.png")
     ];
     this.img = this.allImages[this.counter % this.allImages.length];
     this.width = 75;

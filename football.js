@@ -1,6 +1,6 @@
 class Football {
   constructor() {
-    let footballImage = loadImage("./images/Football-still.png");
+    let footballImage = loadImage("images/Football-still.png");
     this.img = footballImage;
     this.width = 27;
     this.height = 27;
